@@ -9,8 +9,10 @@ const initialState = Vue.observable({
   }
 })
 
+// qiankun 实现主应用的全局状态管理
 const actions = initGlobalState(initialState)
 
+// 监听数据变化 => 发布-订阅的设计模式。
 actions.onGlobalStateChange((newState, prev) => {
   // state: 变更后的状态; prev 变更前的状态
   console.log('main change', JSON.stringify(newState), JSON.stringify(prev))
@@ -27,5 +29,6 @@ actions.getGlobalState = (key) => {
 
   return key ? initialState[key] : initialState
 }
+// actions.offGlobalStateChange()
 
 export default actions

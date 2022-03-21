@@ -47,4 +47,5 @@ registerMicroApps(apps, {
   ]
 })
 setDefaultMountApp('/sub-vue')
-start()
+// 配置预加载
+start({ prefetch: 'all' })

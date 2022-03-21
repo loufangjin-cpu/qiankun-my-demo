@@ -2,11 +2,14 @@ import './public-path'
 import Vue from 'vue'
 import App from './App.vue'
 import routes from './router'
+import ElementUI from 'element-ui'
 import { store as commonStore } from 'common'
 import store from './store'
 import VueRouter from 'vue-router'
-
+import '@/mock/mockServer.js'
+import 'element-ui/lib/theme-chalk/index.css'
 Vue.config.productionTip = false
+Vue.use(ElementUI)
 let instance = null
 
 function render (props = {}) {

@@ -1,18 +1,40 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <div>
+      {{info && info.user && info.user.phone}}
+    </div>
+    <div @click="handleClick"> 点击发送请求</div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
+import service from '@/api'
 export default {
   name: 'Home',
-  components: {
-    HelloWorld
+  data () {
+    return {
+      info: {
+      }
+    }
+  },
+  methods: {
+    handleClick () {
+      const params = {
+        id: 11111,
+        name: 'xxxx'
+      }
+      service('/mock/floors', params).then((res) => {
+        console.log(res?.data?.data?.ent?.clue_info)
+        const tag = res?.data?.data?.ent?.clue_info
+        this.info = { ...tag }
+      })
+    }
   }
 }
 </script>
+
+<style scoped>
+ .home {
+   border: 1px solid red;
+ }
+</style>

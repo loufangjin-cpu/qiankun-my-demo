@@ -9,15 +9,16 @@ import * as serviceWorker from './serviceWorker';
 
 
 
-function render() {
+function render(props) {
+  const {container} = props
   ReactDOM.render(
     <App />,
-    document.getElementById('root')
+    container ? container.querySelector('#root'):document.querySelector('#root')
   );
 }
 
 if (!window.__POWERED_BY_QIANKUN__) {
-  render();
+  render({});
 }
 /**
  * bootstrap 只会在微应用初始化的时候调用一次，下次微应用重新进入时会直接调用 mount 钩子，不会再重复触发 bootstrap。
@@ -31,7 +32,7 @@ export async function bootstrap() {
  */
 export async function mount(props) {
   console.log(props);
-  render();
+  render(props);
 }
 /**
  * 应用每次 切出/卸载 会调用的方法，通常在这里我们会卸载微应用的应用实例
